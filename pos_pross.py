@@ -81,7 +81,7 @@ vonMisesSigned_2 = np.sign(-1.*pressure)*vonMises
 sigma_a = np.zeros((len(vonMisesSigned_1),1))
 sigma_m = np.zeros((len(vonMisesSigned_1),1))
 Safety_factor = np.zeros((len(vonMisesSigned_1),1))
-S_ult = 380 # tensão ultimate
+S_ult = 580 # tensão ultimate
 Se = 0.5*S_ult # tensão de fadiga
 
 for i in range(len(vonMisesSigned_1)):
@@ -100,7 +100,6 @@ for i in range(len(vonMisesSigned_1)):
     Safety_factor[i] = 1/(sigma_a[i]/Se+sigma_m[i]/S_ult)
     print(float(sigma_a[i]), float(sigma_m[i]), i, float(Safety_factor[i]), float(vonMisesSigned_1[i]), float(vonMisesSigned_2[i]))
 
-"""
 sf = Safety_factor.flatten()
 nodeNum = nodeNum.flatten()
 
@@ -136,13 +135,13 @@ sf    = np.ascontiguousarray(np.reshape(sf,(-1,1)), dtype=np.float32)
 print(len(vMNodes))
 print(len(sf))
 
-newFieldOutput = odb.steps['load_min'].frames[-1].FieldOutput(name = 'SF', description = 'Safety factor', type = SCALAR)
+#newFieldOutput = odb.steps['load_min'].frames[-1].FieldOutput(name = 'SF', description = 'Safety factor', type = SCALAR)
 #print(vMNodes)
 #print(sf.tolist())
-newFieldOutput.addData(position = NODAL, instance = odbInstance, labels = vMNodes, data = sf.tolist())
+#newFieldOutput.addData(position = NODAL, instance = odbInstance, labels = vMNodes, data = sf.tolist())
 
 
 
-"""
-odb.save()
+
+#odb.save()
 odb.close()
